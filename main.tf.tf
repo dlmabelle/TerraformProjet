@@ -23,10 +23,7 @@ resource "docker_container" "db_container" {
   ports {
     internal = 3306
   }
-  environment = {
-    MYSQL_ROOT_PASSWORD = var.db_password
-    # Autres variables d'environnement MySQL
-  }
+
   networks_advanced {
     name = docker_network.prestashop_network.name
   }
@@ -40,12 +37,7 @@ resource "docker_container" "prestashop_container" {
     internal = 80
     external = 8080
   }
-  environment = {
-    DB_SERVER      = "prestashop_db"
-    DB_USER        = var.db_user
-    DB_PASSWORD    = var.db_password
-    # Autres variables d'environnement PrestaShop
-  }
+ 
   networks_advanced {
     name = docker_network.prestashop_network.name
   }
